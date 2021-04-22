@@ -23,7 +23,7 @@ class SiteController extends Controller
     protected $meta_desc;
     protected $title;
 
-    protected $temlate;
+    protected $template;
 
     protected $vars = array();
 
