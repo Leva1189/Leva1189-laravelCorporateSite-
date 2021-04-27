@@ -3,6 +3,7 @@
 namespace Corp\Http\Controllers;
 
 use Composer\Config;
+use Corp\Category;
 use Corp\Menu;
 use Corp\Repositories\ArticlesRepository;
 use Corp\Repositories\CommentsRepository;
@@ -27,10 +28,10 @@ class ArticleController extends SiteController
 
     }
 
-    public function index()
+    public function index($cat_alias = FALSE)
     {
         //
-        $articles = $this->getArticles();
+        $articles = $this->getArticles($cat_alias);
         //dd($articles);
 
         $content = view(env('THEME').'.articles_content')->with('articles', $articles);
@@ -66,7 +67,18 @@ class ArticleController extends SiteController
 
     public function getArticles($alias = FALSE){
 
-        $articles = $this->a_rep->get(['id','title', 'alias', 'created_at', 'img', 'desc', 'user_id', 'category_id'], FALSE, TRUE);
+        $where = FALSE;
+
+        if ($alias){
+            //WHERE `alias` = $alias
+            $id = Category::select('id')->where('alias', $alias)->first()->id;
+           // dd($id);
+
+            //WHERE `id` = $id
+            $where = ['category_id', $id];
+        }
+
+        $articles = $this->a_rep->get(['id','title', 'alias', 'created_at', 'img', 'desc', 'user_id', 'category_id'], FALSE, TRUE, $where);
 
         //Жадная загрузка. Оптимизирует кол. SQL запросов
         if ($articles){
@@ -75,6 +87,26 @@ class ArticleController extends SiteController
 
         return $articles;
         //dd($articles);
+    }
+
+    public function show($alias = FALSE)
+    {
+        $article = $this->a_rep->one($alias, ['comments'=>TRUE]);
+        //dd($article);
+
+        if ($article){
+            $article->img = json_decode($article->img);
+        }
+
+        $content = view(env('THEME').'.article_content')->with('article', $article)->render();
+        $this->vars = array_add($this->vars, 'content', $content);
+
+        $comments = $this->getComments(config('settings.recent_comments'));
+        $portfolios = $this->getPortfolios(config('settings.recent_portfolios'));
+        $this->contentRightBar = view(env('THEME').'.articlesBar')->with(['comments'=>$comments, 'portfolios'=>$portfolios]);
+
+
+        return $this->renderOutput();
     }
 
 }
