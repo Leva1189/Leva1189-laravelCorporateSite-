@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "00e340bddc44ba2098c1cee2548cb0b3",
+    "content-hash": "92e75a4d095ad3cd27755a566be2a2f8",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -3720,7 +3720,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.5.9"
+        "php": ">=5.5.9",
+        "ext-json": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
