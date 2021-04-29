@@ -43,7 +43,7 @@ class ArticleController extends SiteController
 
         $comments = $this->getComments(config('settings.recent_comments'));
         $portfolios = $this->getPortfolios(config('settings.recent_portfolios'));
-        $this->contentRightBar = view(env('THEME').'.articlesBar')->with(['comments'=>$comments, 'portfolios'=>$portfolios]);
+        $this->contentRightBar = view(env('THEME').'.articlesBar')->with(['comments'=>$comments, 'portfolios'=>$portfolios])->render();
 
         //dd($portfolios);
         return $this->renderOutput();
