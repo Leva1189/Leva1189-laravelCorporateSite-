@@ -30,6 +30,8 @@ Route::resource('articles', 'ArticleController', [
     ]
 ]);
 
-Route::get('articles/cat/{cat_alias?}', ['uses'=>'ArticleController@index', 'as'=>'articlesCat']);
+Route::get('articles/cat/{cat_alias?}', ['uses'=>'ArticleController@index', 'as'=>'articlesCat'])->where('cat_alias', '[\w-]+');
 
 Route::resource('comment', 'CommentController', ['only'=>['store']]);
+
+Route::match(['get', 'post'], '/contacts', ['uses'=>'ContactsController@index', 'as'=>'contacts']);

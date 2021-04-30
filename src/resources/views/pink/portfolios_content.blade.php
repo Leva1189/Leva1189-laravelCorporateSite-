@@ -1,4 +1,5 @@
- <div id="content-page" class="content group">
+
+<div id="content-page" class="content group">
      <div class="hentry group">
          @if($portfolios)
              <div id="portfolio" class="portfolio-big-image">
