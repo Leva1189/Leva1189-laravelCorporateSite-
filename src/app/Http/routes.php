@@ -35,3 +35,10 @@ Route::get('articles/cat/{cat_alias?}', ['uses'=>'ArticleController@index', 'as'
 Route::resource('comment', 'CommentController', ['only'=>['store']]);
 
 Route::match(['get', 'post'], '/contacts', ['uses'=>'ContactsController@index', 'as'=>'contacts']);
+
+//Route::auth();
+Route::get('login', 'Auth\AuthController@showloginForm');
+
+Route::post('login', 'Auth\AuthController@login');
+
+Route::get('logout', 'Auth\AuthController@logout');
