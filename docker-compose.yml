@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: etc/php/Dockerfile
-    image: php:7.0-fpm
+    image: digitalocean.com/php
     container_name: 'web-php'
     restart: unless-stopped
     tty: true
