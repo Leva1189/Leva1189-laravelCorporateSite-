@@ -19,8 +19,8 @@ class ArticlePolicy
     {
         //
     }
-
-    public function save(User $user){
-        return $user->canDo('ADD_ARTICLES');
-    }
+    
+    public function save(User $user) {
+		return $user->canDo('ADD_ARTICLES');
+	}
 }

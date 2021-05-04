@@ -15,15 +15,23 @@ class ArticleRequest extends Request
     {
         return \Auth::user()->canDo('ADD_ARTICLES');
     }
-
-    protected function getValidatorInstance(){
-        $validator = parent::getValidatorInstance();
-
-        $validator->sometimes('alias', 'unique:articles|max:255', function($input){
-            return !empty($input->alias);
+    
+     protected function getValidatorInstance()
+     {
+    	$validator = parent::getValidatorInstance();
+    	
+    	
+    	
+    	$validator->sometimes('alias','unique:articles|max:255', function($input) {
+        	
+        	return !empty($input->alias);
+        	
         });
+        
         return $validator;
-    }
+    	
+    	
+    }	
 
     /**
      * Get the validation rules that apply to the request.
@@ -32,12 +40,12 @@ class ArticleRequest extends Request
      */
     public function rules()
     {
-       
+        
         return [
             //
-            'title'=>'required|max:255',
-            'text'=>'required',
-            'category_id'=>'required|integer'
+            'title' => 'required|max:255',
+            'text' => 'required',
+            'category_id' => 'required|integer'
         ];
     }
 }

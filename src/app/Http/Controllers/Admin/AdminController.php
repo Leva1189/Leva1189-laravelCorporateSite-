@@ -7,10 +7,9 @@ use Illuminate\Http\Request;
 use Corp\Http\Requests;
 use Corp\Http\Controllers\Controller;
 
-use Illuminate\Support\Facades\Auth;
+use Auth;
 
-use Lavary\Menu\Menu;
-
+use Menu;
 
 class AdminController extends \Corp\Http\Controllers\Controller
 {
@@ -62,7 +61,7 @@ class AdminController extends \Corp\Http\Controllers\Controller
 	}
 	
 	public function getMenu() {
-		return (new \Lavary\Menu\Menu)->make('adminMenu', function($menu) {
+		return Menu::make('adminMenu', function($menu) {
 			
 			$menu->add('Статьи',array('route' => 'admin.articles.index'));
 			

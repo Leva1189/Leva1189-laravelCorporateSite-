@@ -8,7 +8,6 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Corp\Article;
 use Corp\Policies\ArticlePolicy;
 
-
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -17,7 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        Article::class =>ArticlePolicy::class
+        Article::class => ArticlePolicy::class
     ];
 
     /**
@@ -29,13 +28,13 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(GateContract $gate)
     {
         $this->registerPolicies($gate);
-
-        $gate->define('VIEW_ADMIN', function ($user){
-            return $user->canDo('VIEW_ADMIN', FALSE);
+        
+        $gate->define('VIEW_ADMIN', function ($user) {
+        	return $user->canDo('VIEW_ADMIN', FALSE);
         });
-
-        $gate->define('VIEW_ADMIN_ARTICLES', function ($user){
-            return $user->canDo('VIEW_ADMIN_ARTICLES', FALSE);
+        
+        $gate->define('VIEW_ADMIN_ARTICLES', function ($user) {
+        	return $user->canDo('VIEW_ADMIN_ARTICLES', FALSE);
         });
 
         //

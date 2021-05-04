@@ -15,10 +15,10 @@ class ChangePermissionRoleTable extends Migration
         Schema::table('permission_role', function (Blueprint $table) {
             //
             
-           $table->integer('role_id')->unsigned()->default();
+           $table->integer('role_id')->unsigned()->default(1);
            $table->foreign('role_id')->references('id')->on('roles');
             
-           $table->integer('permission_id')->unsigned()->default();
+           $table->integer('permission_id')->unsigned()->default(1);
            $table->foreign('permission_id')->references('id')->on('permissions');
             
             

@@ -2,10 +2,12 @@
 
 namespace Corp\Providers;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
 use Blade;
+
+use DB;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,17 +21,21 @@ class AppServiceProvider extends ServiceProvider
         //
         //  @set($i,10)
         Blade::directive('set',function($exp) {
-
-            list($name,$val) = explode(',',$exp);
-
-            return "<?php $name = $val ?>";
-
+        	
+        	list($name,$val) = explode(',',$exp);
+        	
+        	return "<?php $name = $val ?>";
+        	
         });
-
-        DB::listen(function ($query){
-            //echo '<h1>'.$query->sql.'</h1>';
+        
+        DB::listen(function($query) {
+        	
+        	//echo '<h1>'.$query->sql.'</h1>';
+        	
         });
-
+        
+  
+        
     }
 
     /**
